@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root to: "shared_videos#index"
   get '/dashboard', to: 'shared_videos#index'
+  get '/users', to: redirect('/')
 
-  resources :shared_videos, only: [:index, :new, :create] do
-  end
+  resources :shared_videos, only: [:index, :new, :create]
 end

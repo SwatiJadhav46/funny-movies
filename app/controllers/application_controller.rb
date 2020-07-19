@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  add_flash_types :alert, :notice
 
-  # before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def render_result(service_class, params, path)
     service = service_class.new(params, current_user)
     service.call
 
     if service.result.persisted?
-      redirect_to path
+      redirect_to path, flash: { notice: I18n.t('shared_video.create') }
     else
-      render json: service.errors.full_messages, status: 422
+      redirect_to root_path, flash: { alert: service.result.errors.full_messages }
     end
   end
 

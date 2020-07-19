@@ -227,6 +227,7 @@ input:focus{
 .new-share-card-format{
   background-color: rgba(245, 245, 245, 0.2) !important;
   color: white;
+  width: 460px !important;
 }
 
 .url-input-box{
@@ -237,4 +238,14 @@ input:focus{
 
 .line-height-1{
   line-height: 1.4 !important;
+}
+
+.field_with_errors{
+  width: 304px;
+  border-radius: .25rem;
+}
+
+.form-control{
+  width: 304px !important;
+  border-radius: .25rem !important;
 }

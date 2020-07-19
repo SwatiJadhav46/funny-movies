@@ -18,7 +18,7 @@
         <div>
           <% if resource.errors[:first_name].present?%>
             <span class='text-danger text-center'>
-              <%= resource.errors[:first_name].first %>
+              First name <%= resource.errors[:first_name].first %>
             </span>
           <% end %>
         </div>
@@ -38,7 +38,7 @@
         <div>
           <% if resource.errors[:last_name].present?%>
             <span class='text-danger text-center'>
-              <%= resource.errors[:last_name].first %>
+              Last name <%= resource.errors[:last_name].first %>
             </span>
           <% end %>
         </div>
@@ -50,7 +50,7 @@
             <%= fa_icon "user"%>
           </span>
         </div>
-        <%= f.email_field :email, autofocus: true,
+        <%= f.text_field :email, autofocus: true,
             autocomplete: "email", 
             class: "form-control",
             placeholder: "Email ID"
@@ -58,7 +58,7 @@
         <div>
           <% if resource.errors[:email].present?%>
             <span class='text-danger text-center'>
-              <%= resource.errors[:email].first %>
+              Email <%= resource.errors[:email].first %>
             </span>
           <% end %>
         </div>
@@ -78,7 +78,7 @@
         <div>
           <% if resource.errors[:password].present?%>
             <span class='text-danger text-center'>
-              <%= resource.errors[:password].first %>
+              Password <%= resource.errors[:password].first %>
             </span>
           <% end %>
         </div>
@@ -96,9 +96,9 @@
             class: "form-control"
         %>
         <div>
-          <% if resource.errors[:password_confirmation].present?%>
+          <% if resource.errors[:password].present?%>
             <span class='text-danger text-center'>
-              <%= resource.errors[:password_confirmation].first %>
+              Confirm password <%= resource.errors[:password].first %>
             </span>
           <% end %>
         </div>

@@ -1,0 +1,1 @@
+YOUTUBE_URL_REGEX = /\A(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+\z/
