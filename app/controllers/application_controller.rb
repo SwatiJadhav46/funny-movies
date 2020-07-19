@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     service.call
 
     if service.result.persisted?
-      redirect_to path, flash: { notice: I18n.t('shared_video.create') }
+      redirect_to path, flash: { notice: I18n.t('shared_video.create') }, status: :ok
     else
       redirect_to root_path, flash: { alert: service.result.errors.full_messages }
     end

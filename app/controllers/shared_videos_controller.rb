@@ -3,7 +3,7 @@ class SharedVideosController < ApplicationController
   def index
     @shared_videos = user_signed_in? ? current_user.shared_videos : SharedVideo.all.includes(:user)
 
-    render :index
+    render :index, count: @shared_videos.count
   end
 
   def create

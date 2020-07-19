@@ -32,4 +32,4 @@ en:
   shared_video:
     create: "Youtube video shared successfully!"
     errors:
-      duplicate_url: " has already been shared"
+      duplicate_url: " has already been shared!"
