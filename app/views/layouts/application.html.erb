@@ -10,12 +10,6 @@
   </head>
 
   <body >
-    <% if user_signed_in? %>
-      <%= render 'layouts/dashboard/header' %>
-      <%= yield %>
-      <%= render 'layouts/dashboard/footer' %>
-    <% else %>
-      <%= render 'layouts/guest_user' %>
-    <%end%>
+    <%= render 'layouts/dashboard' %>
   </body>
 </html>

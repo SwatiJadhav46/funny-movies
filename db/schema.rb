@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_091515) do
+ActiveRecord::Schema.define(version: 2020_07_19_045355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "shared_videos", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "title", null: false
+    t.string "thumbnail"
+    t.integer "duration"
+    t.string "author"
+    t.string "provider", null: false
+    t.string "video_id", null: false
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider"], name: "index_shared_videos_on_provider"
+    t.index ["title"], name: "index_shared_videos_on_title"
+    t.index ["url"], name: "index_shared_videos_on_url"
+    t.index ["user_id"], name: "index_shared_videos_on_user_id"
+    t.index ["video_id"], name: "index_shared_videos_on_video_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -1,0 +1,23 @@
+<div class="card bg-white height-50 m-auto align-middle new-share-card-format">
+  <div class="card-header font-weight-bold">
+    Share A Youtube Movie
+  </div>
+  <div class="card-body">
+    <%= form_for :shared_video, url: shared_videos_path, method: :post do |f| %>
+      <div class="input-group mb-3">
+        <span class="mr-2 mt-2">
+          Youtube URL
+        </span>
+        <%= f.text_field :url, autofocus: true,
+            autocomplete: "url", 
+            class: "form-control small-font url-input-box",
+            placeholder: "URL"
+          %>
+      </div>
+
+      <div class="actions form-group login_btn action_btn text-center">
+        <%= f.submit "Share"%>
+      </div>
+    <% end %>
+  </div>
+</div>

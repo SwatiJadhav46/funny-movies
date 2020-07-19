@@ -1,0 +1,25 @@
+<div class="card w-50 bg-white height-50 ml-auto mr-auto mb-3 border-0 border-bottom card-format">
+  <div class="card-body">
+    <div class="row">
+      <div class="col text-right">
+        <%= video_tag video.url, 
+            size: "260x180", 
+            controls: true, 
+            poster: video.thumbnail, 
+            autoplay: true,
+            class: "object-fit-fill video-border",
+            type: 'video/youtube'
+          %>
+      </div>
+      <div class="col small video-description video-details">
+        <p class="video-title mb-1 line-height-1"><%= video.title %></p>
+        <% unless user_signed_in? %>  
+          <p class="mb-0"><u> Shared By</u> : &nbsp; <%= video.user.full_name %></p>
+        <% end %>
+        <p class="mb-0"><u> Shared On </u> : &nbsp;<%= video.shared_on %></p>
+        <p class="mb-1"><u> Duration </u> : &nbsp; <%= video.duration_in_hms %></p>
+        <p class="mb-0"><u>Description </u> : &nbsp; </p>
+        <p class="mb-0"><%= video.description %></p>
+      </div>
+    </div>
+  </div>

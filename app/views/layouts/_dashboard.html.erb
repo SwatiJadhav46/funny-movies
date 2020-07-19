@@ -1,0 +1,31 @@
+<div class="bg">
+  <div class="ml-5 mr-5">
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand" href="/">
+        <h3 class="links"><img src="/assets/2.png" class="header-bg" width="50" height="45" alt=""> Funny Movies</h3>
+      </a>
+      <form class="form-inline">
+        <% if user_signed_in? %>
+          <span class="mr-5 links">
+            <%= current_user.full_name %> ( <%= current_user.email %> )
+          </span>
+          <%= link_to "Share A Movie", new_shared_video_path, :method => :get, class:"btn btn-success btn-sm"%>
+          <div style="padding-left: 10px;">
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class:"btn header-bg btn-sm"%>
+          </div>
+        <% else %>
+          <div style="padding-left: 10px;">
+            <%= link_to "Sign In", new_user_session_path, :method => :get, class:"btn header-bg btn-sm"%>
+          </div>
+          <div style="padding-left: 10px;">
+            <%= link_to "Sign Up", new_user_registration_path, :method => :get, class:"btn header-bg btn-sm"%>
+          </div>
+        <%end%>
+      </form>
+    </nav>
+    <hr class="bg-dark mt-0"/>
+    <div class="small">
+      <%= yield %>
+    </div>
+  </div>
+</div>

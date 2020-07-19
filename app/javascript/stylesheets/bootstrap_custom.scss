@@ -49,9 +49,11 @@ body, html {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100%;
   max-width: inherit;
   font-family: 'Numans', sans-serif;
+  overflow-y: scroll;
 }
 
 .container{
@@ -149,6 +151,14 @@ input:focus{
   }
 }
 
+.action_btn:hover{
+  input{
+    color: black;
+    background-color: white;
+    border-color: #FFC312;
+  }
+}
+
 .login_btn.reset_password{
   input{
     width: 340px;
@@ -161,4 +171,70 @@ input:focus{
 
 .links a{
   margin-left: 4px;
+}
+
+.header-bg{
+  background-color: #FFC312
+}
+
+.bg-white{
+  background-color: white !important;
+}
+
+.height-50{
+  height: 50%
+}
+
+.object-fit-fill{
+  object-fit: fill;
+}
+
+.color-crimson{
+  color: crimson;
+}
+
+.video-border{
+  border: 2px solid black;
+}
+
+.video-description{
+  line-height: 2;
+  text-align: justify;
+}
+
+.small-font{
+  font-size: small !important;
+}
+
+.height-inherite{
+  height: inherit;
+}
+
+.video-details{
+  color: white;
+  font-weight: bold;
+}
+
+.video-title{
+  color: white;
+  font-size: medium;
+}
+
+.card-format{
+  background-color: rgba(245, 245, 245, 0.2) !important;
+}
+
+.new-share-card-format{
+  background-color: rgba(245, 245, 245, 0.2) !important;
+  color: white;
+}
+
+.url-input-box{
+  background-color: rgba(245, 245, 245, 0) !important;
+  color: white !important;
+  border: 1px solid white;
+}
+
+.line-height-1{
+  line-height: 1.4 !important;
 }

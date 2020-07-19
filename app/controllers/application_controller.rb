@@ -1,7 +1,18 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+
+  def render_result(service_class, params, path)
+    service = service_class.new(params, current_user)
+    service.call
+
+    if service.result.persisted?
+      redirect_to path
+    else
+      render json: service.errors.full_messages, status: 422
+    end
+  end
 
   private
 
@@ -10,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    dashboard_index_path
+    shared_videos_path
   end
 end
