@@ -1,7 +1,7 @@
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -11,9 +11,10 @@ require 'mina/git'
 
 set :application_name, 'funny_movies'
 set :domain, '34.92.136.115'
-set :deploy_to, '/www/funny_movies'
+set :deploy_to, '/home/swati/www/funny_movies'
 set :repository, 'git@github.com:SwatiJadhav46/funny-movies.git'
 set :branch, 'master'
+set :user, 'swati'
 
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
@@ -24,7 +25,7 @@ set :branch, 'master'
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 # set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
-# set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
+set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/master.key')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -35,6 +36,7 @@ task :remote_environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use', 'ruby-1.9.3-p125@default'
+  invoke :'rvm:use', 'ruby-2.7.0'
 end
 
 # Put any custom commands you need to run at setup
