@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SharedVideosController, type: :controller do
 
-  let(:shared_video) { create(:shared_video) }
+  let(:shared_video) { FactoryBot.create(:shared_video) }
 
   before {
     @request.env["devise.mapping"] = Devise.mappings[:user]
@@ -16,7 +16,7 @@ RSpec.describe SharedVideosController, type: :controller do
   end
 
   context 'Success For Logged In User' do
-    let(:guest) { create(:user) }
+    let(:guest) { FactoryBot.create(:user) }
 
     before { sign_in guest }
 
@@ -25,25 +25,32 @@ RSpec.describe SharedVideosController, type: :controller do
         shared_video: { url: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' } 
       }
       
-      expect(response.status).to eq(200)
       expect(flash[:notice]).to eq('Youtube video shared successfully!')
     end
   end
 
-  # context 'Failure' do
-  #   let(:guest) { create(:user) }
-  #   let(:shared_video) { create(:shared_video, user_id: guest.id) }
+  context 'Failure' do
+    let(:guest) { FactoryBot.create(:user) }
     
-  #   before { 
-  #     sign_in guest
-  #   }
+    before { 
+      sign_in guest
+    }
 
-  #   it 'Should created shared video object' do
-  #     post :create, params: { 
-  #       shared_video: { url: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' } 
-  #     }
+    it 'Should throw an error if same URL is shared again' do
+      shared_video = FactoryBot.create(:shared_video, user: guest)
+      post :create, params: { 
+        shared_video: { url: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' } 
+      }
 
-  #     expect(flash[:notice]).to eq('Url has already been shared!')
-  #   end
-  # end
+      expect(flash[:alert][0]).to eq('Url  has already been shared!')
+    end
+
+    it 'Should throw an error if provider is not youtube' do
+      post :create, params: { 
+        shared_video: { url: 'https://www.dailymotion.com/video/x7oi9om' } 
+      }
+
+      expect(flash[:alert][0]).to eq('Provider is not included in the list')
+    end
+  end
 end
